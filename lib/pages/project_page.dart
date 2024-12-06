@@ -15,7 +15,7 @@ class _ProjectPageState extends State<ProjectPage> {
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
         body: Column(
-          children: [_header(), _avatars(), const Divider()],
+          children: [_header(), _avatars(), const Divider(), _files()],
         ));
   }
 
@@ -87,5 +87,73 @@ class _ProjectPageState extends State<ProjectPage> {
         ],
       ),
     );
+  }
+
+  Widget _files() {
+    return Expanded(
+        child: ListView(padding: const EdgeInsets.all(25.0), children: [
+      _filesHeader(),
+      const SizedBox(height: 15.0),
+      _file("Assets", true),
+      _file('Brandbook', false),
+      _file('Design', false),
+      _file('Moodboards', true),
+      _file('Wireframes', false)
+    ]));
+  }
+
+  Row _filesHeader() {
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text('Files',
+            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+        Text(
+          'Create new',
+          style: TextStyle(
+              fontSize: 16.0, fontWeight: FontWeight.bold, color: Colors.blue),
+        )
+      ],
+    );
+  }
+
+  Widget _file(String name, bool showAlert) {
+    return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        margin: const EdgeInsets.only(bottom: 8.0),
+        height: 65.0,
+        decoration: BoxDecoration(
+            color: Colors.grey[200], borderRadius: BorderRadius.circular(15.0)),
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Row(children: [
+            Stack(children: [
+              Icon(Icons.folder, color: Colors.blue[200]),
+              Visibility(
+                  visible: showAlert,
+                  child: Positioned(
+                    top: 2.0,
+                    right: -1.0,
+                    child: Container(
+                      padding: const EdgeInsets.all(2.0),
+                      decoration: const BoxDecoration(
+                          color: Colors.white, shape: BoxShape.circle),
+                      child: const CircleAvatar(
+                        radius: 3.5,
+                        backgroundColor: Colors.red,
+                      ),
+                    ),
+                  ))
+            ]),
+            const SizedBox(width: 12.0),
+            Text(name,
+                style: const TextStyle(
+                    fontWeight: FontWeight.w500, fontSize: 16.0))
+          ]),
+          IconButton(
+              icon: const Icon(Icons.more_vert_rounded),
+              color: Colors.grey,
+              onPressed: () {})
+        ]));
   }
 }
