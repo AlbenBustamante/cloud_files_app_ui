@@ -101,8 +101,50 @@ class _TeamFolderPageState extends State<TeamFolderPage> {
             ]),
           ),
           const SizedBox(height: 15.0),
-          const Divider(height: 20.0)
+          const Divider(height: 20.0),
+          Expanded(
+              child: ListView(padding: const EdgeInsets.all(25.0), children: [
+            const Text("Recently updated",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 15.0),
+            Row(children: [
+              _buildFileColumn('sketch', 'desktop', '.sketch'),
+              SizedBox(width: _availableScreenWidth * .03),
+              _buildFileColumn('sketch', 'mobile', '.sketch'),
+              SizedBox(width: _availableScreenWidth * .03),
+              _buildFileColumn('prd', 'interaction', '.prd'),
+            ]),
+            const Divider(height: 60.0)
+          ]))
         ]));
+  }
+
+  Column _buildFileColumn(String image, String filename, String ext) {
+    return Column(
+      children: [
+        Container(
+            width: _availableScreenWidth * .31,
+            decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(20.0)),
+            padding: const EdgeInsets.all(38.0),
+            height: 110.0,
+            child: Image.asset("assets/images/$image.png")),
+        const SizedBox(height: 15.0),
+        RichText(
+            text: TextSpan(
+                text: filename,
+                style: const TextStyle(color: Colors.black, fontSize: 14.0),
+                children: [
+              TextSpan(
+                  text: ext,
+                  style: const TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 12.0))
+            ])),
+      ],
+    );
   }
 
   Column _buildFileSizeChart(
