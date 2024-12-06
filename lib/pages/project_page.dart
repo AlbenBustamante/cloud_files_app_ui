@@ -10,13 +10,19 @@ class ProjectPage extends StatefulWidget {
 }
 
 class _ProjectPageState extends State<ProjectPage> {
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey.shade100,
         body: Column(
           children: [_header(), _avatars(), const Divider(), _files()],
-        ));
+        ),
+        bottomNavigationBar: _bottomNavigationBar(),
+        floatingActionButton: _floatingActionButton(),
+        floatingActionButtonLocation:
+            FloatingActionButtonLocation.centerDocked);
   }
 
   Container _header() {
@@ -159,6 +165,37 @@ class _ProjectPageState extends State<ProjectPage> {
                 color: Colors.grey,
                 onPressed: () {})
           ])),
+    );
+  }
+
+  BottomNavigationBar _bottomNavigationBar() {
+    return BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        selectedItemColor: Colors.blue,
+        currentIndex: _selectedIndex,
+        onTap: (selectedIndex) {
+          setState(() {
+            _selectedIndex = selectedIndex;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.access_time), label: 'Time'),
+          BottomNavigationBarItem(icon: Icon(Icons.add_box), label: 'Box')
+        ]);
+  }
+
+  Container _floatingActionButton() {
+    return Container(
+      decoration: const BoxDecoration(shape: BoxShape.circle, boxShadow: [
+        BoxShadow(color: Colors.white, blurRadius: 1.0, spreadRadius: 7.0)
+      ]),
+      child: FloatingActionButton(
+          onPressed: () {},
+          shape: const CircleBorder(),
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          child: const Icon(Icons.add)),
     );
   }
 }
