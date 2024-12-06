@@ -98,7 +98,8 @@ class _ProjectPageState extends State<ProjectPage> {
       _file('Brandbook', false),
       _file('Design', false),
       _file('Moodboards', true),
-      _file('Wireframes', false)
+      _file('Wireframes', false),
+      _file('Others', false)
     ]));
   }
 
@@ -117,43 +118,47 @@ class _ProjectPageState extends State<ProjectPage> {
     );
   }
 
-  Widget _file(String name, bool showAlert) {
-    return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        margin: const EdgeInsets.only(bottom: 8.0),
-        height: 65.0,
-        decoration: BoxDecoration(
-            color: Colors.grey[200], borderRadius: BorderRadius.circular(15.0)),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Row(children: [
-            Stack(children: [
-              Icon(Icons.folder, color: Colors.blue[200]),
-              Visibility(
-                  visible: showAlert,
-                  child: Positioned(
-                    top: 2.0,
-                    right: -1.0,
-                    child: Container(
-                      padding: const EdgeInsets.all(2.0),
-                      decoration: const BoxDecoration(
-                          color: Colors.white, shape: BoxShape.circle),
-                      child: const CircleAvatar(
-                        radius: 3.5,
-                        backgroundColor: Colors.red,
+  GestureDetector _file(String name, bool showAlert) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          margin: const EdgeInsets.only(bottom: 8.0),
+          height: 65.0,
+          decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(15.0)),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Row(children: [
+              Stack(children: [
+                Icon(Icons.folder, color: Colors.blue[200]),
+                Visibility(
+                    visible: showAlert,
+                    child: Positioned(
+                      top: 2.0,
+                      right: -1.0,
+                      child: Container(
+                        padding: const EdgeInsets.all(2.0),
+                        decoration: const BoxDecoration(
+                            color: Colors.white, shape: BoxShape.circle),
+                        child: const CircleAvatar(
+                          radius: 3.5,
+                          backgroundColor: Colors.red,
+                        ),
                       ),
-                    ),
-                  ))
+                    ))
+              ]),
+              const SizedBox(width: 12.0),
+              Text(name,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500, fontSize: 16.0))
             ]),
-            const SizedBox(width: 12.0),
-            Text(name,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w500, fontSize: 16.0))
-          ]),
-          IconButton(
-              icon: const Icon(Icons.more_vert_rounded),
-              color: Colors.grey,
-              onPressed: () {})
-        ]));
+            IconButton(
+                icon: const Icon(Icons.more_vert_rounded),
+                color: Colors.grey,
+                onPressed: () {})
+          ])),
+    );
   }
 }
