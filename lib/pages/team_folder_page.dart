@@ -114,9 +114,52 @@ class _TeamFolderPageState extends State<TeamFolderPage> {
               SizedBox(width: _availableScreenWidth * .03),
               _buildFileColumn('prd', 'interaction', '.prd'),
             ]),
-            const Divider(height: 60.0)
+            const Divider(height: 60.0),
+            const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Projects',
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold)),
+                  Text('Create new',
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold))
+                ]),
+            const SizedBox(height: 20.0),
+            _buildProjectFolderRow('Chatbox'),
+            _buildProjectFolderRow('TimeNote'),
+            _buildProjectFolderRow('Something'),
+            _buildProjectFolderRow('Other')
           ]))
         ]));
+  }
+
+  Container _buildProjectFolderRow(String folderName) {
+    return Container(
+        margin: const EdgeInsets.only(bottom: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        height: 65.0,
+        decoration: BoxDecoration(
+            color: Colors.grey.shade200,
+            borderRadius: BorderRadius.circular(15.0)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(children: [
+              Icon(Icons.folder, color: Colors.blue[200]),
+              const SizedBox(width: 12.0),
+              Text(folderName, style: const TextStyle(fontSize: 16.0))
+            ]),
+            IconButton(
+              icon: const Icon(Icons.more_vert_rounded, color: Colors.grey),
+              onPressed: () {},
+            )
+          ],
+        ));
   }
 
   Column _buildFileColumn(String image, String filename, String ext) {
