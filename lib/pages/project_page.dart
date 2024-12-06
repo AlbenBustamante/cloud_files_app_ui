@@ -12,6 +12,48 @@ class ProjectPage extends StatefulWidget {
 class _ProjectPageState extends State<ProjectPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+        backgroundColor: Colors.grey.shade100,
+        body: Column(
+          children: [_header()],
+        ));
+  }
+
+  Widget _header() {
+    return Container(
+        alignment: Alignment.bottomLeft,
+        padding: const EdgeInsets.all(25.0),
+        height: 170.0,
+        decoration: BoxDecoration(color: Colors.grey[200]),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text('Chatbox',
+                      style: TextStyle(
+                          fontSize: 26.0, fontWeight: FontWeight.bold)),
+                  Text(widget._folderName,
+                      style: const TextStyle(
+                          fontSize: 17.0, fontWeight: FontWeight.bold))
+                ]),
+            Row(children: [
+              _headerIcon(Icons.search),
+              const SizedBox(width: 15.0),
+              _headerIcon(Icons.share_outlined)
+            ])
+          ],
+        ));
+  }
+
+  Container _headerIcon(IconData icon) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.grey[300], borderRadius: BorderRadius.circular(15.0)),
+      child: IconButton(
+          icon: Icon(icon, size: 28.0, color: Colors.blue), onPressed: () {}),
+    );
   }
 }
