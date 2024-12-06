@@ -19,7 +19,7 @@ class _ProjectPageState extends State<ProjectPage> {
         ));
   }
 
-  Widget _header() {
+  Container _header() {
     return Container(
         alignment: Alignment.bottomLeft,
         padding: const EdgeInsets.all(25.0),
@@ -32,12 +32,12 @@ class _ProjectPageState extends State<ProjectPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text('Chatbox',
-                      style: TextStyle(
-                          fontSize: 26.0, fontWeight: FontWeight.bold)),
                   Text(widget._folderName,
                       style: const TextStyle(
-                          fontSize: 17.0, fontWeight: FontWeight.bold))
+                          fontSize: 26.0, fontWeight: FontWeight.bold)),
+                  const Text("Project",
+                      style: TextStyle(
+                          fontSize: 17.0, fontWeight: FontWeight.w400))
                 ]),
             Row(children: [
               _headerIcon(Icons.search),
